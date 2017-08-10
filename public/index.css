@@ -1,0 +1,65 @@
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+.main-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    z-index: 10000;
+    background-color: rgba(255, 255, 255, .5);
+}
+
+.loader-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -40px;
+    margin-top: -40px;
+}
+
+.loader-text {
+    position: absolute;
+    top: -80px;
+    left: -70px;
+    width: 240px;
+}
+
+.expander > button {
+    padding: 0 !important;
+}
+
+.container {
+    margin: 15px auto
+}
+
+.date-picker > div:first-child {
+    height: 72px !important;
+    width: 100% !important;
+}
+
+.select-mui {
+    width: 100% !important;
+    height: 72px!important;
+}
+
+.select-mui > div > div:nth-child(2) {
+    padding: 0 !important;
+    height: 72px!important;
+    top: 20px !important;
+}
+
+.select-mui > div > button {
+    top: 20px !important;
+    right: 0px !important;
+}
+
+.select-mui > div > div:nth-child(4) {
+    margin: 0 !important;
+    bottom: 8px !important;
+}
+
