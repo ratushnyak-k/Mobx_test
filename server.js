@@ -1,4 +1,4 @@
-var serverFactory = require('spa-server');
+var serverFactory = require('./node_modules/spa-server');
 
 var server = serverFactory.create({
   path: './build',
