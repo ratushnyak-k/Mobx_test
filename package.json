@@ -22,7 +22,6 @@
     "serializr": "^1.1.12"
   },
   "scripts": {
-    "prestart": "npm run build",
     "start": "node server.js",
     "dev": "react-scripts start",
     "build": "react-scripts build",
