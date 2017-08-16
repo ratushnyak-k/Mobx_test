@@ -48,10 +48,9 @@ export class AppStore {
         password: '12345',
         photo: 'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/15698218_1399415436758358_7453856702470598442_n.jpg?oh=135f28a8e14e9ef7b13d204446620229&oe=5A2E180D',
       });
-      //data.forEach(item => {
-      //  API.postData(ApiRoutes.signup, item);
-      //});
-      console.log(JSON.stringify(data));
+      data.forEach(item => {
+        API.postData(ApiRoutes.signup, item);
+      });
     } catch (error) {
       console.error(error);
     }

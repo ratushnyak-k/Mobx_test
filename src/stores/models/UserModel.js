@@ -3,6 +3,7 @@ import {
   serializable,
 } from 'serializr';
 import { createViewModel } from 'mobx-utils';
+import { observable } from 'mobx';
 
 class ViewModel {
   _viewModel;
@@ -23,6 +24,11 @@ class UserLocation extends ViewModel {
   @serializable postcode;
 }
 
+class FriendshipStatus extends ViewModel {
+  @serializable @observable status;
+  @serializable @observable requester;
+}
+
 export default class UserModel extends ViewModel {
   @serializable displayName;
   @serializable email;
@@ -32,4 +38,5 @@ export default class UserModel extends ViewModel {
   @serializable gender;
   @serializable dob;
   @serializable phone;
+  @serializable(object(FriendshipStatus)) @observable friendship;
 }

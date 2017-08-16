@@ -55,50 +55,111 @@ export class UsersStore {
     }
   }
 
-  @action.bound setTotal(total) {
+  @action.bound
+  setTotal(total) {
     this.total = total;
   }
 
-  @action.bound paginate() {
+  @action.bound
+  paginate() {
     this.options.offset = this.options.offset + 10;
     this.fetchItems(this.concatUsers);
   }
 
-  @action.bound search(queries) {
+  @action.bound
+  search(queries) {
     if (!isEqual(mobx.toJS(this.queries), queries)) {
       this.queries = queries;
+      this.options.offset = 0;
       this.fetchItems(this.replaceUsers);
     }
   }
 
-  @action.bound concatUsers(data) {
+  @action.bound
+  concatUsers(data) {
     const users = data.map(user => deserialize(UserModel, user));
     this.users = this.users.concat(users);
   }
 
-  @action.bound replaceUsers(data) {
+  @action.bound
+  replaceUsers(data) {
     this.users = data.map(user => deserialize(UserModel, user));
   }
 
-  @action.bound setUser(user) {
+  @action.bound
+  setUser(user) {
     this.userDetails = deserialize(UserModel, user);
   }
 
-  @action.bound friend(id) {
-    this.users.forEach((user) => {
-      if (user._id === id) {
-        user.isMyFriend = true;
+  @action.bound
+  setFriendship(_id, friendship) {
+    this.users.map((user) => {
+      if (user._id === _id) {
+        return user.friendship = friendship;
       }
+      return user;
     });
   }
 
-  @action.bound unFriend(id) {
-    this.users.forEach((user) => {
-      if (user._id === id) {
-        user.isMyFriend = false;
-      }
-    });
+  @action.bound
+  async request(myId, _id) {
+    try {
+      const response = await API.postData(ApiRoutes.friends.request(_id));
+      const data = {
+        requester: myId,
+        status: response.data.status
+      };
+      this.setFriendship(_id, data);
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
   }
+
+  @action.bound
+  async cancel(_id) {
+    try {
+      const response = await API.postData(ApiRoutes.friends.cancel(_id));
+      this.setFriendship(_id, response.data);
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
+  @action.bound
+  async accept(_id) {
+    try {
+      const response = await API.postData(ApiRoutes.friends.accept(_id));
+      this.setFriendship(_id, response.data);
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
+  @action.bound
+  async deny(_id) {
+    try {
+      const response = await API.postData(ApiRoutes.friends.deny(_id));
+      this.setFriendship(_id, response.data);
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
+  @action.bound
+  async remove(_id) {
+    try {
+      const response = await API.postData(ApiRoutes.friends.remove(_id));
+      this.setFriendship(_id, response.data);
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
 }
 
 export default new UsersStore();

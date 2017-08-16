@@ -26,4 +26,8 @@ export default class Field {
     this.value = value;
   }
 
+  @action.bound clear() {
+    this.value = '';
+  }
+
 }

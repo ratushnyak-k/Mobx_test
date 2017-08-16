@@ -5,10 +5,6 @@ import {
 import { HOC } from 'formsy-react';
 
 class RadioGroup extends React.Component {
-  constructor() {
-    super();
-  }
-
   onChange(event, value) {
     this.props.onChange(value);
   }

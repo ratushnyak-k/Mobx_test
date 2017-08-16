@@ -77,13 +77,19 @@ class App extends React.Component {
               {
                 this.props.appStore.userData._id &&
                 <Link to="/user-list">
-                  <FlatButton label="Users list" />
+                  <FlatButton
+                    label="Users list"
+                    secondary={this.props.location.pathname === "/user-list"}
+                  />
                 </Link>
               }
               {
                 this.props.appStore.userData._id &&
                 <Link to="/friends-list">
-                  <FlatButton label="Friends list" />
+                  <FlatButton
+                    label="Friends list"
+                    secondary={this.props.location.pathname === "/friends-list"}
+                  />
                 </Link>
               }
               {
