@@ -5,6 +5,7 @@ import {
 import { createViewModel } from 'mobx-utils';
 import { observable } from 'mobx';
 
+
 class ViewModel {
   _viewModel;
 
