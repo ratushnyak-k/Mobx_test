@@ -69,7 +69,6 @@ class ProfileEdit extends React.Component {
 
   async onSubmitForm(model, resetForm, invalidateForm) {
 
-    console.log(this.form.data);
     try {
       const response = await API.putData(ApiRoutes.myProfile, this.form.data);
       this.props.appStore.setUserData(response.data);

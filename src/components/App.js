@@ -10,6 +10,7 @@ import {
   FlatButton,
   IconButton,
   IconMenu,
+  LinearProgress,
   MenuItem,
 } from 'material-ui';
 
@@ -26,6 +27,9 @@ const propTypes = {};
 const defaultProps = {};
 
 @inject('appStore')
+@inject('usersStore')
+@inject('friendsStore')
+
 @observer
 class App extends React.Component {
 
@@ -79,7 +83,7 @@ class App extends React.Component {
                 <Link to="/user-list">
                   <FlatButton
                     label="Users list"
-                    secondary={this.props.location.pathname === "/user-list"}
+                    secondary={this.props.location.pathname === '/user-list'}
                   />
                 </Link>
               }
@@ -88,7 +92,7 @@ class App extends React.Component {
                 <Link to="/friends-list">
                   <FlatButton
                     label="Friends list"
-                    secondary={this.props.location.pathname === "/friends-list"}
+                    secondary={this.props.location.pathname === '/friends-list'}
                   />
                 </Link>
               }
@@ -117,6 +121,13 @@ class App extends React.Component {
           }
         />
 
+        {
+          (this.props.usersStore.loading || this.props.friendsStore.loading) &&
+          <LinearProgress
+            color="#ff4081"
+            className="spinner-main"
+          />
+        }
         <div className="container">
           {this.props.children}
         </div>

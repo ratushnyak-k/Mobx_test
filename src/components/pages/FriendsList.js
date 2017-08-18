@@ -9,11 +9,13 @@ import {
   RaisedButton,
   Badge,
 } from 'material-ui';
+import Mood from 'material-ui/svg-icons/social/mood';
 
 import Field from '../../stores/models/form/Field';
 import FieldGroup from '../../stores/models/form/FieldGroup';
 import UserItem from '../shared/UserItem';
 import ListFilter from '../shared/ListFilter';
+import Empty from '../shared/Empty';
 import { userTabs } from '../../utils/constants';
 
 @inject('friendsStore')
@@ -47,10 +49,6 @@ class FriendsList extends React.Component {
         value: this.props.friendsStore.queries[userTabs.pending].gender,
       }),
     });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
   }
 
   load() {
@@ -92,8 +90,16 @@ class FriendsList extends React.Component {
                   );
                 })
               }
+              {
+                !this.props.friendsStore.data[userTabs.friends].length &&
+                <Empty
+                  title={'You have no friends))'}
+                  icon={<Mood />}
+                />
+              }
             </div>
             {
+              !(this.props.friendsStore.data[userTabs.friends].length < 10) && // partly fixing bug on backend
               this.props.friendsStore.data[userTabs.friends].length < this.props.friendsStore.total[userTabs.friends] &&
               <RaisedButton
                 label="Load More"
@@ -136,8 +142,16 @@ class FriendsList extends React.Component {
                   );
                 })
               }
+              {
+                !this.props.friendsStore.data[userTabs.pending].length &&
+                <Empty
+                  title={'You don\'t need anyone))'}
+                  icon={<Mood />}
+                />
+              }
             </div>
             {
+              !(this.props.friendsStore.data[userTabs.pending].length < 10) && // partly fixing bug on backend
               this.props.friendsStore.data[userTabs.pending].length < this.props.friendsStore.total[userTabs.pending] &&
               <RaisedButton
                 label="Load More"

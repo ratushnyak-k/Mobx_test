@@ -104,7 +104,7 @@ class Signin extends React.Component {
 
           </Formsy.Form>
         </div>
-        {true && <RaisedButton
+        {false && <RaisedButton
           label="Generate"
           primary
           fullWidth

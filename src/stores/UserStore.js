@@ -19,6 +19,7 @@ import * as mobx from 'mobx';
 useStrict(true);
 
 export class UsersStore {
+  @observable loading = false;
   @observable users = [];
   @observable userDetails = {};
   @observable options = {
@@ -34,15 +35,23 @@ export class UsersStore {
 
   @action.bound
   async fetchItems(cb) {
+    this.load(true);
     try {
       const options = merge(mobx.toJS(this.options), mobx.toJS(this.queries));
       const response = await API.getData(ApiRoutes.users, options);
+      this.load(false);
       cb(response.data.docs);
       this.setTotal(response.data.total);
     } catch (e) {
+      this.load(false);
       console.error(e);
       throw e;
     }
+  }
+
+  @action.bound
+  load(bool) {
+    this.loading = bool;
   }
 
   async fetchUser(id) {
@@ -107,7 +116,7 @@ export class UsersStore {
       const response = await API.postData(ApiRoutes.friends.request(_id));
       const data = {
         requester: myId,
-        status: response.data.status
+        status: response.data.status,
       };
       this.setFriendship(_id, data);
     } catch (e) {

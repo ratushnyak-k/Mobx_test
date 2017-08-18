@@ -8,6 +8,7 @@ import UserItem from '../shared/UserItem';
 import { RaisedButton } from 'material-ui';
 import { Link } from 'react-router';
 
+@inject('appStore')
 @inject('usersStore')
 @inject('friendsStore')
 @observer
@@ -25,6 +26,12 @@ class UserDetails extends React.Component {
       <div className="row">
         <UserItem
           className="col-sm-6"
+          request={this.props.usersStore.request}
+          cancel={this.props.usersStore.cancel}
+          accept={this.props.usersStore.accept}
+          deny={this.props.usersStore.deny}
+          remove={this.props.usersStore.remove}
+          myId={this.props.appStore.userData._id}
           user={userDetails}
         />
         <div className="col-sm-6">

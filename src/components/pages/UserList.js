@@ -4,7 +4,6 @@ import {
   observer,
 } from 'mobx-react';
 
-import Snackbar from 'material-ui/Snackbar';
 import {
   RaisedButton,
 } from 'material-ui';
@@ -12,6 +11,8 @@ import {
 import Field from '../../stores/models/form/Field';
 import FieldGroup from '../../stores/models/form/FieldGroup';
 import UserItem from '../shared/UserItem';
+import Empty from '../shared/Empty';
+import DoNotDisturbed from 'material-ui/svg-icons/notification/do-not-disturb-on';
 import ListFilter from '../shared/ListFilter';
 
 @inject('usersStore')
@@ -69,16 +70,14 @@ class UserList extends React.Component {
               );
             })
           }
+          {
+            !this.props.usersStore.users.length &&
+            <Empty
+              title="No content"
+              icon={<DoNotDisturbed />}
+            />
+          }
         </div>
-        <Snackbar
-          open={this.props.friendsStore.isOpenSnackBar}
-          message="Successfully added to friends list"
-          action="close"
-          autoHideDuration={5000}
-          onActionTouchTap={this.props.friendsStore.closeSnackBar}
-          onRequestClose={this.props.friendsStore.closeSnackBar}
-        />
-
         {
           this.props.usersStore.users.length < this.props.usersStore.total &&
           <RaisedButton

@@ -20,6 +20,7 @@ import UserModel from '../stores/models/UserModel';
 useStrict(true);
 
 export class FriendsStore {
+  @observable loading = false;
   @observable initialQueries = {
     displayName: '',
     gender: '',
@@ -59,7 +60,13 @@ export class FriendsStore {
   }
 
   @action.bound
+  load(bool) {
+    this.loading = bool;
+  }
+
+  @action.bound
   async fetchItems(dataKey, cb) {
+    this.load(true);
     try {
       const options = merge(
         mobx.toJS(this.options[dataKey]),
@@ -67,9 +74,11 @@ export class FriendsStore {
       );
       const url = dataKey === userTabs.friends ? ApiRoutes.friends.get : ApiRoutes.friends.pending;
       const response = await API.getData(url, options);
+      this.load(false);
       cb(dataKey, response.data.docs);
       this.setTotal(dataKey, response.data.total);
     } catch (e) {
+      this.load(false);
       console.error(e);
       throw e;
     }

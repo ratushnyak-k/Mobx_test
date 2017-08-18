@@ -77,6 +77,30 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     padding: 20px 35px 0 0 !important;
 }
 
+.empty {
+    height: calc(100vh - 260px);
+    text-align: center;
+}
+
+.empty > div {
+    line-height: 570px;
+    padding: 0;
+}
+
+.empty-badge {
+    width: 250px;
+}
+
+.empty-badge svg {
+    width: 100px !important;
+    height: 100px !important;
+    margin-left: -225px;
+}
+
+.spinner-main {
+    position: absolute !important;
+}
+
 @media (min-width: 576px) {
     .container {
         width: 100% !important;
