@@ -169,6 +169,10 @@ export class UsersStore {
     }
   }
 
+  signout() {
+    this.replaceUsers([]);
+  }
+
 }
 
 export default new UsersStore();

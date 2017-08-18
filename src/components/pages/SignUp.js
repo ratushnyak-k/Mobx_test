@@ -28,7 +28,7 @@ class SignUp extends React.Component {
     this.form = new FieldsGroup({
       displayName: new Field({
         name: 'displayName',
-        value: 'e',
+        value: '',
 
       }),
       photo: new Field({
@@ -38,17 +38,17 @@ class SignUp extends React.Component {
       }),
       email: new Field({
         name: 'email',
-        value: 'ratushnyak@steelkiwi.com',
+        value: '',
 
       }),
       password: new Field({
         name: 'password',
-        value: '12345',
+        value: '',
 
       }),
       passwordRepeat: new Field({
         name: 'passwordRepeat',
-        value: '12345',
+        value: '',
       }),
     });
   }

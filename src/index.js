@@ -10,7 +10,6 @@ import AppStore from './stores/AppStore';
 import UserStore from './stores/UserStore';
 import FriendsStore from './stores/FriendsStore';
 
-import registerServiceWorker from './registerServiceWorker';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import 'normalize.css';
 import 'bootstrap-css';
@@ -33,4 +32,3 @@ ReactDOM.render(
       />
     </Provider>
   </MuiThemeProvider>, document.getElementById('root'));
-registerServiceWorker();

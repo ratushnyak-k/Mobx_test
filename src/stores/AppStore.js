@@ -13,12 +13,14 @@ useStrict(true);
 export class AppStore {
   @observable userData = {};
 
-  @action.bound signout() {
+  @action.bound
+  signout() {
     this.setUserData({});
     AuthSession.remove();
   }
 
-  @action.bound setUserData(data) {
+  @action.bound
+  setUserData(data) {
     this.userData = data;
   }
 

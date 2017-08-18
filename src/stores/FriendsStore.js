@@ -128,6 +128,11 @@ export class FriendsStore {
     });
   }
 
+  @action.bound
+  signout() {
+    this.replaceUsers(userTabs.friends, []);
+    this.replaceUsers(userTabs.pending, []);
+  }
 }
 
 export default new FriendsStore();

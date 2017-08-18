@@ -35,6 +35,8 @@ class App extends React.Component {
 
   onSignOut() {
     this.props.appStore.signout();
+    this.props.usersStore.signout();
+    this.props.friendsStore.signout();
     this.props.router.replace('/');
   }
 
