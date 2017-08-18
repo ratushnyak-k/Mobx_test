@@ -8,7 +8,11 @@ const defaultProps = {};
 const Home = (props) => {
 
   return (
-    <div>Home</div>
+    <div className="iframe">
+      <iframe
+        src="http://swizec.github.io/react-particles-experiment/"
+      />
+    </div>
   );
 };
 
